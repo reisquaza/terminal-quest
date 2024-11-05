@@ -1,0 +1,20 @@
+[
+{
+  "directory": "/home/reisquaza/terminal-quest/build",
+  "command": "/usr/bin/c++   -g -o CMakeFiles/terminal-quest.dir/main.cpp.o -c /home/reisquaza/terminal-quest/main.cpp",
+  "file": "/home/reisquaza/terminal-quest/main.cpp",
+  "output": "CMakeFiles/terminal-quest.dir/main.cpp.o"
+},
+{
+  "directory": "/home/reisquaza/terminal-quest/build",
+  "command": "/usr/bin/c++   -g -o CMakeFiles/terminal-quest.dir/src/character.cpp.o -c /home/reisquaza/terminal-quest/src/character.cpp",
+  "file": "/home/reisquaza/terminal-quest/src/character.cpp",
+  "output": "CMakeFiles/terminal-quest.dir/src/character.cpp.o"
+},
+{
+  "directory": "/home/reisquaza/terminal-quest/build",
+  "command": "/usr/bin/c++   -g -o CMakeFiles/terminal-quest.dir/src/player.cpp.o -c /home/reisquaza/terminal-quest/src/player.cpp",
+  "file": "/home/reisquaza/terminal-quest/src/player.cpp",
+  "output": "CMakeFiles/terminal-quest.dir/src/player.cpp.o"
+}
+]

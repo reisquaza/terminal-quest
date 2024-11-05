@@ -1,0 +1,1 @@
+/usr/bin/c++ -g "CMakeFiles/terminal-quest.dir/main.cpp.o" "CMakeFiles/terminal-quest.dir/src/character.cpp.o" "CMakeFiles/terminal-quest.dir/src/player.cpp.o" -o terminal-quest 
