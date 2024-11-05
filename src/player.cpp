@@ -1,11 +1,11 @@
 #include "player.h"
 
-Player::Player(Attributes &attributes) : Character(attributes)
+Player::Player(Attributes *attributes) : Character(attributes)
 {
 	playerClass = PlayerClass::None;
-	str = attributes.strength;
-	wis = attributes.wisdom;
-	dex = attributes.dexterity;
+	str = attributes->strength;
+	wis = attributes->wisdom;
+	dex = attributes->dexterity;
 }
 
 Player::~Player() {};

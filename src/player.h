@@ -15,9 +15,11 @@ class Player : public Character
 {
   private:
 	PlayerClass playerClass;
+    int level;
+    int exp;
 
   public:
-	Player(Attributes &Attributes);
+	Player(Attributes *Attributes);
 	~Player();
 };
 
