@@ -7,3 +7,5 @@ Player::Player(Attributes &attributes) : Character(attributes)
 	wis = attributes.wisdom;
 	dex = attributes.dexterity;
 }
+
+Player::~Player() {};

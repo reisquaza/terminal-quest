@@ -18,6 +18,7 @@ class Player : public Character
 
   public:
 	Player(Attributes &Attributes);
+	~Player();
 };
 
 #endif // !CHARACTER_H
