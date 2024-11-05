@@ -1,3 +1,0 @@
-/home/reisquaza/terminal-quest/build/CMakeFiles/terminal-quest.dir
-/home/reisquaza/terminal-quest/build/CMakeFiles/edit_cache.dir
-/home/reisquaza/terminal-quest/build/CMakeFiles/rebuild_cache.dir
