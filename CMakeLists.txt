@@ -2,7 +2,15 @@ cmake_minimum_required(VERSION 3.10)
 
 project(terminal-quest)
 
-file(GLOB SOURCES "src/*.cpp" "src/*.h" "main.cpp")
+find_package(Curses REQUIRED)
+include_directories(${CURSES_INCLUDE_DIR})
 
-add_executable(${PROJECT_NAME} main.cpp ${SOURCES}) 
+file(GLOB SOURCES
+    "src/*.cpp"
+    "src/levels/*.cpp"
+    "main.cpp")
+
+add_executable(${PROJECT_NAME} ${SOURCES})
+
+target_link_libraries(${PROJECT_NAME} ${CURSES_LIBRARIES})
 

@@ -1,15 +1,11 @@
-#include "src/player.h"
+#include "src/levels/level0.h"
 #include <iostream>
 
 using namespace std;
 
 int main(int argc, char *argv[])
 {
-	Attributes attributes;
-    attributes.strength = 1;
-    attributes.dexterity = 1;
-    attributes.wisdom = 1;
-    Player player(&attributes);
-	std::cout << player.wis;
+	Level0 level0 = Level0();
+	level0.render();
 	return 0;
 }
