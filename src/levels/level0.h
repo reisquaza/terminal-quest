@@ -8,9 +8,9 @@ class Level0 {
         Level0();
         void render();
     private:
-        void createPlayer();
+        Player createPlayer();
         void distributePoints(Player *player);
-        void selectClass();
+        PlayerAttributes selectClass();
 
 };
 

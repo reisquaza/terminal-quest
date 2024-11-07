@@ -5,21 +5,26 @@
 
 enum PlayerClass
 {
+	None,
 	Warrior,
 	Mage,
 	Rogue,
-	None
+};
+
+struct PlayerAttributes : Attributes
+{
+	PlayerClass playerClass;
 };
 
 class Player : public Character
 {
   private:
-	PlayerClass playerClass;
-    int level;
-    int exp;
+	int level;
+	int exp;
 
   public:
-	Player(Attributes *Attributes);
+	Player(PlayerAttributes *attributes);
+	PlayerClass playerClass;
 	~Player();
 };
 
