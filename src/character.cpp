@@ -1,27 +1,43 @@
 #include "character.h"
 
-Character::Character(Attributes *attributes)
+Character::Character(Attributes &attributes)
 {
-	str += attributes->strength;
-	wis += attributes->wisdom;
-	dex += attributes->dexterity;
-
+	this->CharAttributes = attributes;
 }
 
-int Character::calculateMp(const Attributes *attributes)
+Character::~Character()
 {
-	return attributes->mana + (attributes->wisdom * 2);
-}
-int Character::calculateHp(const Attributes *attributes)
-{
-	return attributes->health + (attributes->strength * 4);
 }
 
-void Character::increaseAttributes(const Attributes *attributes)
+int Character::attack()
 {
-	str += attributes->strength;
-	wis += attributes->wisdom;
-	dex += attributes->dexterity;
-	mp += calculateMp(attributes);
-	hp += calculateHp(attributes);
+	return 0;
+}
+
+int CharacterCalculation::calculateHp(int str)
+{
+	return str * 4;
+}
+
+int CharacterCalculation::calculateMp(int wis)
+{
+	return wis * 2;
+}
+
+CharacterBuilder::CharacterBuilder()
+{
+}
+
+IncreaseHp CharacterCalculation::increaseHp(int str, int currentHp)
+{
+	return {calculateHp(str), currentHp - calculateHp(str)};
+}
+
+IncreaseMp CharacterCalculation::increaseMp(int wis, int currentMp)
+{
+	return {calculateMp(wis), currentMp - calculateMp(wis)};
+}
+
+CharacterBuilder::~CharacterBuilder()
+{
 }

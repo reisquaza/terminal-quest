@@ -4,4 +4,4 @@ BasedOnStyle: Microsoft # You can choose another style like Google, Mozilla, etc
 IndentWidth: 4      # Sets the number of spaces for indentation
 TabWidth: 4         # Sets the number of spaces a tab represents
 UseTab: ForIndentation # Use tabs for indentation (alternatives: Never, Always)
-
+ColumnLimit: 80   

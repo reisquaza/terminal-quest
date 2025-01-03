@@ -16,20 +16,22 @@ void Level0::distributePoints(Player *player)
 		clear();
 
 		mvprintw(0, 0, "You have %d points left to distribute", totalPoints);
-
 		if (currentSelection == 0)
 			attron(A_REVERSE);
-		mvprintw(2, 0, "Strength (%d): %d", player->str, attributes.strength);
+		mvprintw(2, 0, "Strength (%d): %d", player->CharAttributes.strength,
+		         attributes.strength);
 		if (currentSelection == 0)
 			attroff(A_REVERSE);
 		if (currentSelection == 1)
 			attron(A_REVERSE);
-		mvprintw(3, 0, "Wisdom (%d): %d", player->wis, attributes.wisdom);
+		mvprintw(3, 0, "Wisdom (%d): %d", player->CharAttributes.wisdom,
+		         attributes.wisdom);
 		if (currentSelection == 1)
 			attroff(A_REVERSE);
 		if (currentSelection == 2)
 			attron(A_REVERSE);
-		mvprintw(4, 0, "Dexterity (%d): %d", player->dex, attributes.dexterity);
+		mvprintw(4, 0, "Dexterity (%d): %d", player->CharAttributes.dexterity,
+		         attributes.dexterity);
 		if (currentSelection == 2)
 			attroff(A_REVERSE);
 
@@ -88,17 +90,16 @@ void Level0::distributePoints(Player *player)
 		}
 		else if (ch == '\n' | ch == 10)
 		{
-			player->increaseAttributes(&attributes);
+			player->gainStr(attributes.strength);
 			break;
 		}
 	}
 }
-PlayerAttributes Level0::selectClass()
+Player Level0::selectClass()
 {
-	int currentSelection = 0; // 0 = Strength, 1 = Wisdom, 2 = Dexterity
+	int currentSelection = 0; // 0 = Warrior, 1 = Mage, 2 = Rogue
 	PlayerAttributes attributes;
-	attributes.health = 20;
-	attributes.mana = 10;
+	Player player = Player(attributes);
 
 	while (true)
 	{
@@ -137,48 +138,56 @@ PlayerAttributes Level0::selectClass()
 			switch (currentSelection)
 			{
 			case 0:
-				attributes.playerClass = PlayerClass::Warrior;
-				attributes.strength = 5;
-				attributes.wisdom = 1;
-				attributes.dexterity = 4;
+				player = PlayerBuilder()
+				             .setDex(4)
+				             .setWis(1)
+				             .setStr(5)
+				             .setClass(PlayerClass::Warrior)
+				             .build();
 				break;
 			case 1:
-				attributes.playerClass = PlayerClass::Mage;
-				attributes.strength = 1;
-				attributes.wisdom = 5;
-				attributes.dexterity = 4;
+				player = PlayerBuilder()
+				             .setDex(4)
+				             .setWis(5)
+				             .setStr(1)
+				             .setClass(PlayerClass::Mage)
+				             .build();
 				break;
 			case 2:
-				attributes.playerClass = PlayerClass::Rogue;
-				attributes.strength = 3;
-				attributes.wisdom = 3;
-				attributes.dexterity = 4;
+				player = PlayerBuilder()
+				             .setDex(4)
+				             .setWis(3)
+				             .setStr(3)
+				             .setClass(PlayerClass::Rogue)
+				             .build();
 				break;
 			}
 			break;
 		}
 	}
-	return attributes;
+	return player;
 }
 Player Level0::createPlayer()
 {
-	PlayerAttributes attributes = selectClass();
-	Player player = Player(&attributes);
+	Player player = selectClass();
 	distributePoints(&player);
 	return player;
 }
+
 void Level0::render()
 {
 	Player player = createPlayer();
 	clear();
 	initscr();
 	mvprintw(0, 0, "Final Attributes:");
-	mvprintw(1, 0, "Strength: %d", player.str);
-	mvprintw(2, 0, "Wisdom: %d", player.wis);
-	mvprintw(3, 0, "Dexterity: %d", player.dex);
-	mvprintw(4, 0, "Health: %d", player.hp);
-	mvprintw(5, 0, "Mana: %d", player.mp);
-	mvprintw(6, 0, "Class: %d", player.playerClass);
+	mvprintw(1, 0, "Strength: %d", player.CharAttributes.strength);
+	mvprintw(2, 0, "Wisdom: %d", player.CharAttributes.wisdom);
+	mvprintw(3, 0, "Dexterity: %d", player.CharAttributes.dexterity);
+	mvprintw(4, 0, "Health: %d/%d", player.CharAttributes.currentHealth,
+	         player.CharAttributes.maxHealth);
+	mvprintw(5, 0, "Mana: %d/%d", player.CharAttributes.currentMana,
+	         player.CharAttributes.maxMana);
+	mvprintw(6, 0, "Class: %d", player.CharAttributes.playerClass);
 	mvprintw(8, 0, "Press any key to continue...");
 	refresh();
 

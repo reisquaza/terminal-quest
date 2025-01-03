@@ -3,21 +3,50 @@ struct Attributes
 	int strength;
 	int wisdom;
 	int dexterity;
-    int health;
-    int mana;
+	int maxHealth;
+	int currentHealth;
+	int maxMana;
+	int currentMana;
+};
+
+struct IncreaseHp
+{
+	int maxHp;
+	int currentHp;
+};
+
+struct IncreaseMp
+{
+	int maxMp;
+	int currentMp;
+};
+
+class CharacterCalculation
+{
+  public:
+	static int calculateHp(int str);
+	static int calculateMp(int wis);
+	static IncreaseHp increaseHp(int str, int currentHp);
+	static IncreaseMp increaseMp(int wis, int currentMp);
 };
 
 class Character
 {
+  protected:
+	Attributes CharAttributes = {0, 0, 0, 0, 0, 0, 0};
+
   public:
-	Character(Attributes *attributes);
-    int calculateHp(const Attributes *attributes);
-    int calculateMp(const Attributes *attributes);
-    void increaseAttributes(const Attributes *attributes);
+	Character(Attributes &attributes);
 	int attack();
-	int hp = 0;
-	int mp = 10;
-	int str = 0;
-	int wis = 0;
-	int dex = 0;
+};
+
+class CharacterBuilder
+{
+  private:
+	Attributes Attributes;
+
+  public:
+	CharacterBuilder();
+
+	~CharacterBuilder();
 };
